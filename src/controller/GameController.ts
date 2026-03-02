@@ -66,7 +66,7 @@ class GameController {
     // After all animations and logic are done, sync the view and check
     // end conditions.
     this.view.syncGrid(this.model.getSnapshot());
-    this.checkEndConditions();
+    if (this.checkEndConditions()) return this.view.showVictory();
     this.view.unlock();
     this.state.setState(ControllerState.Idle);
   }
@@ -75,11 +75,11 @@ class GameController {
    * Check if the game has reached a victory or game over condition after
    * a move.
    *
-   * @returns {void}
+   * @returns {boolean} - True if the game is over (victory or game
+   * over), false otherwise.
    */
-  private checkEndConditions(): void {
-    if (this.model.getSnapshot().score < 1000) return;
-    this.view.showVictory();
+  private checkEndConditions(): boolean {
+    return this.model.getSnapshot().score >= this.model.getVictoryScore();
   }
 }
 

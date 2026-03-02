@@ -1,5 +1,7 @@
 # Candy Crush
 
+_This project was developed as part of a university practical assignment._
+
 This document describes the setup, architecture, and execution of the Candy Crush game implemented in TypeScript Vite.
 
 The project follows a clean MVC-inspired architecture and includes a deterministic game engine, animated rendering, and full match resolution logic.

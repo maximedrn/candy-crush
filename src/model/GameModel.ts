@@ -18,6 +18,8 @@ import {
  * new candies.
  */
 class GameModel {
+  private static readonly VICTORY_SCORE: number = 1000;
+
   private grid: GridManager;
   private score: ScoreManager;
   private gameState: GameState = GameState.Playing;
@@ -36,6 +38,10 @@ class GameModel {
     this.grid.init();
     this.score.reset();
     this.gameState = GameState.Playing;
+  }
+
+  public getVictoryScore(): number {
+    return GameModel.VICTORY_SCORE;
   }
 
   /**

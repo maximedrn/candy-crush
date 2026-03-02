@@ -9,11 +9,12 @@ import {
   type SpawnResult,
 } from "@/model/types";
 import seedrandom from "seedrandom";
-import { v4 as uuid } from "uuid";
+import { v4 } from "uuid";
 
 class GridManager {
-  public static SIZE: number = 9;
-  public static COLORS: CandyColor[] = Object.values(CandyColor);
+  public static readonly SIZE: number = 9;
+  public static readonly COLORS: CandyColor[] = Object.values(CandyColor);
+
   private cells: (Candy | null)[][] = [];
   private random: () => number;
 
@@ -41,7 +42,7 @@ class GridManager {
       GridManager.COLORS[
         Math.floor(this.random() * GridManager.COLORS.length)
       ]!;
-    return { id: uuid(), color };
+    return { id: v4(), color };
   }
 
   /**

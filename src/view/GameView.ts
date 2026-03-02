@@ -121,7 +121,6 @@ class GameView {
    * @returns {void}
    */
   public showGameOver(): void {
-    console.log("GameView: Game Over");
     this.messageElement.textContent = "💀 Game Over";
   }
 
