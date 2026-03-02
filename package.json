@@ -1,0 +1,46 @@
+{
+  "name": "candy-crush",
+  "author": "Maxime Dréan",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "bunx vite",
+    "build": "tsc --noEmit && bunx vite build",
+    "preview": "bunx vite preview",
+    "lint": "bunx eslint .",
+    "lint:fix": "bunx eslint . --fix",
+    "format": "bunx prettier . --write",
+    "format:check": "bunx prettier . --check",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.4",
+    "@types/seedrandom": "^3.0.8",
+    "@typescript-eslint/eslint-plugin": "^8.56.1",
+    "@typescript-eslint/parser": "^8.56.1",
+    "eslint": "^10.0.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsdoc": "^62.7.1",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-no-relative-import-paths": "^1.6.1",
+    "eslint-plugin-no-secrets": "^2.2.2",
+    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-promise": "^7.2.1",
+    "eslint-plugin-security": "^4.0.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "prettier": "^3.8.1",
+    "typescript": "^5.9.3",
+    "vite": "^8.0.0-beta.16",
+    "vite-tsconfig-paths": "^6.1.1"
+  },
+  "overrides": {
+    "vite": "^8.0.0-beta.13"
+  },
+  "dependencies": {
+    "seedrandom": "^3.0.5",
+    "uuid": "^13.0.0"
+  }
+}
