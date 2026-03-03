@@ -1,8 +1,13 @@
 # Node dependencies.
 node_modules
 
+# NW.js.
+build.nw.ts
+
 # Build output.
 dist
+release
+cache
 build
 *.tsbuildinfo
 
@@ -13,6 +18,7 @@ build
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
+bun.lock
 
 # Operating system files.
 .DS_Store

@@ -33,7 +33,7 @@ const eslintConfig = [
     languageOptions: {
       parser: tsParser,
       parserOptions: {
-        project: "./tsconfig.eslint.json",
+        project: "./tsconfig.json",
         sourceType: "module",
       },
     },

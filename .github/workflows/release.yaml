@@ -1,0 +1,76 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: ${{ matrix.platform }}-${{ matrix.arch }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: linux
+            arch: x64
+          - platform: linux
+            arch: ia32
+          - platform: win
+            arch: x64
+          - platform: win
+            arch: arm64
+          - platform: win
+            arch: ia32
+          - platform: osx
+            arch: x64
+          - platform: osx
+            arch: arm64
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Cache bun dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.bun/install/cache
+            node_modules
+          key: bun-${{ runner.os }}-${{ hashFiles('bun.lockb', 'package.json') }}
+          restore-keys: |
+            bun-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Cache NW runtime
+        uses: actions/cache@v4
+        with:
+          path: cache
+          key: nw-cache-${{ matrix.platform }}-${{ matrix.arch }}
+
+      - name: Typecheck
+        run: bun run typecheck
+
+      - name: Lint
+        run: bun run lint
+
+      - name: Build NW.js
+        run: bunx tsx build.nw.ts ${{ matrix.platform }} ${{ matrix.arch }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: candy-crush-${{ matrix.platform }}-${{ matrix.arch }}
+          path: release

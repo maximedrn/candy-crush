@@ -33,6 +33,7 @@ bun run build
 # Default preview in local browser.
 bun run preview
 # Preview in windowed mode using NW.js (nw).
+bun run preview:nw
 ```
 
 # Architecture overview

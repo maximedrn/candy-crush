@@ -4,7 +4,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "main": "dist/index.html",
+  "main": "index.html",
   "window": {
     "width": 1280,
     "height": 800
@@ -12,8 +12,16 @@
   "scripts": {
     "dev": "bunx vite",
     "build": "tsc --noEmit && bunx vite build",
+    "build:linux-x64": "bunx tsx build.nw.ts linux x64",
+    "build:win-x64": "bunx tsx build.nw.ts win x64",
+    "build:darwin-x64": "bunx tsx build.nw.ts osx x64",
+    "build:win-arm64": "bunx tsx build.nw.ts win arm64",
+    "build:darwin-arm64": "bunx tsx build.nw.ts osx arm64",
+    "build:linux-ia32": "bunx tsx build.nw.ts linux ia32",
+    "build:win-ia32": "bunx tsx build.nw.ts win ia32",
+    "release": "act -W .github/workflows/release.yaml -P ubuntu-latest=ghcr.io/catthehacker/ubuntu:full-latest --container-architecture linux/amd64 --rm",
     "preview": "bunx vite preview",
-    "preview:nw": "bun run build && bunx nw .",
+    "preview:nw": "bun run build && shx cp package.json dist/ && bunx nw dist",
     "lint": "bunx eslint .",
     "lint:fix": "bunx eslint . --fix",
     "format": "bunx prettier . --write",
@@ -22,6 +30,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.4",
+    "@types/node": "^25.3.3",
     "@types/seedrandom": "^3.0.8",
     "@typescript-eslint/eslint-plugin": "^8.56.1",
     "@typescript-eslint/parser": "^8.56.1",
@@ -38,6 +47,7 @@
     "eslint-plugin-security": "^4.0.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "nw": "^0.108.0",
+    "nw-builder": "^4.17.5",
     "prettier": "^3.8.1",
     "typescript": "^5.9.3",
     "vite": "^8.0.0-beta.16",
@@ -47,10 +57,14 @@
     "vite": "^8.0.0-beta.13"
   },
   "dependencies": {
+    "rimraf": "^6.1.3",
     "seedrandom": "^3.0.5",
+    "shx": "^0.4.0",
     "uuid": "^13.0.0"
   },
   "trustedDependencies": [
-    "nw"
+    "nw",
+    "nw-builder",
+    "unrs-resolver"
   ]
 }
