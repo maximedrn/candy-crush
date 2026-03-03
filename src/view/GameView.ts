@@ -240,14 +240,30 @@ class GameView {
    * @returns {Promise<void>} - Resolves when the animation is complete.
    */
   public async animateRemove(matches: Match[]): Promise<void> {
-    matches.forEach((match: Match) => {
-      match.positions.forEach((position: Position) => {
-        const element: HTMLElement | null = this.container.querySelector(
-          `[data-row="${position.row}"][data-col="${position.column}"]`,
-        );
-        element?.classList.add("explode");
-      });
-    });
+    const animations: Promise<void>[] = [];
+
+    for (const match of matches) {
+      for (const position of match.positions) {
+        const element: HTMLElement | null = this.getCell(position);
+        if (!element) continue;
+
+        const duration: number = 300;
+        const animation: Promise<void> = new Promise<void>((resolve) => {
+          element.style.transition = "none";
+          element.style.transform = "scale(1)";
+          element.getBoundingClientRect();
+
+          element.style.transition = `transform ${duration}ms ease`;
+          element.style.transform = "scale(0)";
+
+          setTimeout(resolve, duration);
+        });
+
+        animations.push(animation);
+      }
+    }
+
+    await Promise.all(animations);
   }
 
   /**

@@ -111,8 +111,3 @@ body {
 .purple {
   background: var(--purple);
 }
-
-.explode {
-  transform: scale(0);
-  opacity: 0;
-}
