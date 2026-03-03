@@ -16,8 +16,21 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [linux, win, osx]
-        arch: [x64, arm64, ia32]
+        include:
+          - platform: linux
+            arch: x64
+          - platform: linux
+            arch: ia32
+          - platform: win
+            arch: x64
+          - platform: win
+            arch: arm64
+          - platform: win
+            arch: ia32
+          - platform: osx
+            arch: x64
+          - platform: osx
+            arch: arm64
 
     steps:
       - name: Checkout
