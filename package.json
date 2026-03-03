@@ -4,10 +4,16 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "main": "dist/index.html",
+  "window": {
+    "width": 1280,
+    "height": 800
+  },
   "scripts": {
     "dev": "bunx vite",
     "build": "tsc --noEmit && bunx vite build",
     "preview": "bunx vite preview",
+    "preview:nw": "bun run build && bunx nw .",
     "lint": "bunx eslint .",
     "lint:fix": "bunx eslint . --fix",
     "format": "bunx prettier . --write",
@@ -31,6 +37,7 @@
     "eslint-plugin-promise": "^7.2.1",
     "eslint-plugin-security": "^4.0.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
+    "nw": "^0.108.0",
     "prettier": "^3.8.1",
     "typescript": "^5.9.3",
     "vite": "^8.0.0-beta.16",
@@ -42,5 +49,8 @@
   "dependencies": {
     "seedrandom": "^3.0.5",
     "uuid": "^13.0.0"
-  }
+  },
+  "trustedDependencies": [
+    "nw"
+  ]
 }
