@@ -17,8 +17,9 @@ The project follows a clean MVC-inspired architecture and includes a determinist
 
 ## Prerequisites
 
-- Bun (https://bun.sh)
-- Node.js (only if not using Bun for execution)
+- [Bun](https://bun.sh)
+- [Node.js](https://nodejs.org/en/download)
+- [Act](https://github.com/nektos/act) for local GitHub Actions testing
 
 ## Installation
 

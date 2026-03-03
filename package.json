@@ -19,7 +19,7 @@
     "build:darwin-arm64": "bunx tsx build.nw.ts osx arm64",
     "build:linux-ia32": "bunx tsx build.nw.ts linux ia32",
     "build:win-ia32": "bunx tsx build.nw.ts win ia32",
-    "release": "act -W .github/workflows/release.yaml -P ubuntu-latest=ghcr.io/catthehacker/ubuntu:full-latest --container-architecture linux/amd64 --rm",
+    "act:release": "act -W .github/workflows/release.yaml -P ubuntu-latest=ghcr.io/catthehacker/ubuntu:full-latest --container-architecture linux/amd64 --rm",
     "preview": "bunx vite preview",
     "preview:nw": "bun run build && shx cp package.json dist/ && bunx nw dist",
     "lint": "bunx eslint .",
